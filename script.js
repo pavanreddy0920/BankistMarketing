@@ -8,6 +8,8 @@ const learnMoreBtn = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 const operationsTab = document.querySelectorAll('.operations__tab');
 const operationsContent = document.querySelectorAll('.operations__content');
+const nav = document.querySelector('.nav');
+const navLinks = document.querySelectorAll('.nav__link');
 
 ///////////////////////////////////////////////////////////////////////////////
 // Modal window
@@ -100,3 +102,21 @@ document
       .querySelector(`.operations__content--${clicked.dataset.tab}`)
       .classList.add('operations__content--active');
   });
+
+//////////////////////////////////////////////////////////////////////////////////
+// Adding effects for the Nav
+//////////////////////////////////////////////////////////////////////////////////
+
+const navHover = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    navLinks.forEach((el) => {
+      if (el !== e.target) {
+        el.style.opacity = this;
+      }
+    });
+    nav.querySelector('img').style.opacity = this;
+  }
+};
+
+nav.addEventListener('mouseover', navHover.bind(0.5));
+nav.addEventListener('mouseout', navHover.bind(1));
