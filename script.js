@@ -120,3 +120,26 @@ const navHover = function (e) {
 
 nav.addEventListener('mouseover', navHover.bind(0.5));
 nav.addEventListener('mouseout', navHover.bind(1));
+
+////////////////////////////////////////////////////////////////////////////////////////// ADDING STICKY NAVIGATION //////////////
+//////////////////////////////////////////////////////////////////////////////////////
+
+const header = document.querySelector('.header');
+const navHeight = nav.getBoundingClientRect().height;
+
+const sticky = function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) {
+    nav.classList.add('sticky');
+  } else {
+    nav.classList.remove('sticky');
+  }
+};
+
+const headerObserver = new IntersectionObserver(sticky, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+});
+
+headerObserver.observe(header);
